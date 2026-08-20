@@ -1,25 +1,60 @@
 ﻿using Transports;
+using System.Windows.Forms;
+using System.Threading.Tasks;
+using Google.Protobuf;
+using Newtonsoft.Json;
 
-class Program
+namespace MapClickDemo
 {
-    static async Task Main(string[] args)
+    internal static class Program
     {
-        var service = new NextDeparturesServiceImpl();
-        var request = new NextDeparturesRequest
+        private static NextDeparturesServiceImpl departuresService = new NextDeparturesServiceImpl();
+        [STAThread]
+        static void Main(string[] args)
         {
-            Location = "51.537511,-0.152208",
-            CountryIso = "GBR",
-            Key = new Key
+            ApplicationConfiguration.Initialize();
+            var form = new Form1(OnLocationPicked);
+            Application.Run(form);
+        }
+
+        private static async Task OnLocationPicked(string location)
+        {
+            try
             {
-                CapiHost = "busmaps.com",
-                ApiKey = "825858535684745631cd5fef5c1626ee",
-                Port = 8443
+                var request = new NextDeparturesRequest
+                {
+                    Location = location,
+                    CountryIso = "PRT",
+                    Key = new Key
+                    {
+                        CapiHost = "busmaps.com",
+                        ApiKey = "825858535684745631cd5fef5c1626ee",
+                        Port = 8443
+                    }
+                };
+                Console.WriteLine("Picked location " + request.Location.ToString() + " in " + request.CountryIso);
+                var response = await departuresService.GetService(request, null);
+
+                Console.WriteLine(formatResponse(response));
             }
-        };
+            catch (Exception ex)
+            {
+                MessageBox.Show(
+                    $"Location: {location}\n\nError:\n{ex.Message}",
+                    "Caught Exception"
+                );
+            }
+        }
 
-        var response = await service.GetService(request, null);
+        private static string formatResponse(NextDeparturesResponse response)
+        {
+            string json = JsonFormatter.Default.Format(response);
 
-        Console.WriteLine(response);
-        MessageBox.Show(response.ToString(), " Response");
+            string pretty = JsonConvert.SerializeObject(
+                JsonConvert.DeserializeObject(json),
+                Formatting.Indented
+            );
+            return pretty;
+        }
     }
 }
