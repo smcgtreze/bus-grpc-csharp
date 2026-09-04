@@ -7,6 +7,7 @@ public class PedestrianMatrixServiceImpl : ServiceImpl<PedestrianMatrixRequest, 
 
     public override void AppendArgumentsToUrl(PedestrianMatrixRequest request, StringBuilder url)
     {
+        AppendQueryParam(url, "coordinates", request.Coordinates);
         AppendQueryParam(url, "sourceLocations", string.Join(",", request.SourceLocations));
         AppendQueryParam(url, "destinationLocations", string.Join(",", request.DestinationLocations));
         AppendQueryParam(url, "annotations", request.Annotations);

@@ -8,6 +8,7 @@ public class GtfsFeedsCatalogServiceImpl : ServiceImpl<GtfsFeedsCatalogRequest, 
     public override void AppendArgumentsToUrl(GtfsFeedsCatalogRequest request, StringBuilder url)
     {
         AppendQueryParam(url, "countryIso", request.CountryIso);
+        AppendQueryParam(url, "feedName", request.FeedName);
     }
 
     public override Transports.Key getKey(GtfsFeedsCatalogRequest request) => request.Key;

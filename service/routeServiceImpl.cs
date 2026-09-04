@@ -15,6 +15,7 @@ public class RouteServiceImpl : ServiceImpl<RoutesRequest, RoutesResponse>
         AppendQueryParam(url, "transport", request.Transport);
         AppendQueryParam(url, "maxRoutes", request.MaxRoutes);
         AppendQueryParam(url, "lang", request.Lang);
+        AppendQueryParam(url, "barrierMode", request.BarrierMode);
     }
 
     public override Transports.Key getKey(RoutesRequest request) => request.Key;

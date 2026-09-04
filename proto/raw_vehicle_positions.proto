@@ -18,6 +18,7 @@ message VehiclePositionsRequest {
   optional string lang = 4;
   string bounding_box = 5;
   optional string countryIso = 6;
+  optional string tripId = 7;
 }
 
 message VehiclePositionsResponse {

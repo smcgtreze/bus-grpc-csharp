@@ -13,9 +13,10 @@ service PedestrianMatrixService {
 
 message PedestrianMatrixRequest {
   Key key = 1;
-  repeated string source_locations = 2;
-  repeated string destination_locations = 3;
-  optional string annotations = 4;
+  string coordinates = 2;
+  repeated string source_locations = 3;
+  repeated string destination_locations = 4;
+  optional string annotations = 5;
 }
 
 message PedestrianMatrixResponse {

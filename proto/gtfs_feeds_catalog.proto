@@ -14,6 +14,7 @@ service GtfsFeedsCatalogService {
 message GtfsFeedsCatalogRequest {
   Key key = 1;
   optional string country_iso = 2;
+  optional string feed_name = 3;
 }
 
 message GtfsFeedsCatalogResponse {

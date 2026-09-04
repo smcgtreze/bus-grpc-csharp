@@ -21,6 +21,7 @@ message PedestrianRouteRequest {
   optional bool skip_waypoints = 7;
   optional string region_name = 8;
   optional string lang = 9;
+  string coordinates = 10;
 }
 
 message PedestrianRouteResponse {

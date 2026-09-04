@@ -45,6 +45,7 @@ message RoutesRequest {
   optional string transport = 8;
   optional string maxRoutes = 9;
   optional string lang = 10;
+  optional string barrier_mode = 11;
 }
 
 message Location {

@@ -15,6 +15,7 @@ public class PedestrianRouteServiceImpl : ServiceImpl<PedestrianRouteRequest, Pe
         AppendQueryParam(url, "skip_waypoints", request.SkipWaypoints);
         AppendQueryParam(url, "regionName", request.RegionName);
         AppendQueryParam(url, "lang", request.Lang);
+        AppendQueryParam(url, "coordinates", request.Coordinates);
     }
 
     public override Transports.Key getKey(PedestrianRouteRequest request) => request.Key;

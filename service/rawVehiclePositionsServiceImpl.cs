@@ -12,6 +12,7 @@ public class RawVehiclePositionsServiceImpl : ServiceImpl<VehiclePositionsReques
         AppendQueryParam(url, "routeId", request.RouteId);
         AppendQueryParam(url, "countryIso", request.CountryIso);
         AppendQueryParam(url, "lang", request.Lang);
+        AppendQueryParam(url, "tripId", request.TripId);
     }
 
     public override Transports.Key getKey(VehiclePositionsRequest request) => request.Key;

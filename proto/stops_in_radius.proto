@@ -16,6 +16,7 @@ message StopsInRadiusRequest {
   Key key = 2;
   int32 radius = 3;
   optional string limit = 4;
+  optional string lang = 5;
 }
 
 message StopsInRadiusResponse {

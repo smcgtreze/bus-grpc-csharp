@@ -10,6 +10,7 @@ public class StopsInRadiusServiceImpl : ServiceImpl<StopsInRadiusRequest, StopsI
         AppendQueryParam(url, "location", request.Location);
         AppendQueryParam(url, "radius", request.Radius);
         AppendQueryParam(url, "limit", request.Limit);
+        AppendQueryParam(url, "lang", request.Lang);
     }
 
     public override Transports.Key getKey(StopsInRadiusRequest request) => request.Key;

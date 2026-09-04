@@ -12,7 +12,7 @@ service LineService {
 }
 
 message LineRequest {
-  string route_hash2 = 1;
+  string routeId = 1;
   Key key = 2;
   string countryIso = 3;
   string region_name = 4;
