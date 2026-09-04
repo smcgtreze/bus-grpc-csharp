@@ -3,10 +3,7 @@ using Transports;
 
 public class NextDeparturesServiceImpl : ServiceImpl<NextDeparturesRequest, NextDeparturesResponse>
 {
-    public override string GetEndpoint(NextDeparturesRequest request)
-    {
-        return "nextDepartures";
-    }
+    public override string GetEndpoint(NextDeparturesRequest request) => "nextDepartures";
 
     public override void AppendArgumentsToUrl(NextDeparturesRequest request, StringBuilder url){
         AppendQueryParam(url, "location", request.Location);
@@ -20,8 +17,5 @@ public class NextDeparturesServiceImpl : ServiceImpl<NextDeparturesRequest, Next
         AppendQueryParam(url, "lang", request.Lang);
     }
 
-    public override Transports.Key getKey(NextDeparturesRequest request)
-    {
-        return request.Key;
-    }
+    public override Transports.Key getKey(NextDeparturesRequest request) => request.Key;
 }

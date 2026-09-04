@@ -3,10 +3,7 @@ using Transports;
 
 public class RouteServiceImpl : ServiceImpl<RoutesRequest, RoutesResponse>
 {
-    public override string GetEndpoint(RoutesRequest request)
-    {
-        return "routes";
-    }
+    public override string GetEndpoint(RoutesRequest request) => "routes";
 
     public override void AppendArgumentsToUrl(RoutesRequest request, StringBuilder url){
         AppendQueryParam(url, "origin", request.Origin);
@@ -20,8 +17,5 @@ public class RouteServiceImpl : ServiceImpl<RoutesRequest, RoutesResponse>
         AppendQueryParam(url, "lang", request.Lang);
     }
 
-    public override Transports.Key getKey(RoutesRequest request)
-    {
-        return request.Key;
-    }
+    public override Transports.Key getKey(RoutesRequest request) => request.Key;
 }
