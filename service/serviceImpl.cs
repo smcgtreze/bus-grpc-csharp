@@ -47,6 +47,15 @@ public abstract class ServiceImpl<IN, OUT> where IN : IMessage, new() where OUT 
         builder.Append(name).Append('=').Append(Uri.EscapeDataString(value.Value.ToString()));
     }
 
+    public static void AppendQueryParam(StringBuilder builder, string name, bool value)
+    {
+        if (!value)
+            return;
+
+        builder.Append(builder.ToString().Contains("?") ? '&' : '?');
+        builder.Append(name).Append('=').Append(value.ToString().ToLowerInvariant());
+    }
+
     private static class ProtoJson
     {
         public static readonly JsonParser Tolerant =
