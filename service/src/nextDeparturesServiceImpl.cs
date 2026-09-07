@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class NextDeparturesServiceImpl : ServiceImpl<NextDeparturesRequest, NextDeparturesResponse>
 {
     public override string GetEndpoint(NextDeparturesRequest request) => "nextDepartures";
@@ -17,5 +19,5 @@ public class NextDeparturesServiceImpl : ServiceImpl<NextDeparturesRequest, Next
         AppendQueryParam(url, "lang", request.Lang);
     }
 
-    public override Transports.Key getKey(NextDeparturesRequest request) => request.Key;
+    public override Transports.Key GetKey(NextDeparturesRequest request) => request.Key;
 }

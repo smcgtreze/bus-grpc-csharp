@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class GtfsFeedsCatalogServiceImpl : ServiceImpl<GtfsFeedsCatalogRequest, GtfsFeedsCatalogResponse>
 {
     public override string GetEndpoint(GtfsFeedsCatalogRequest request) => "getGtfsFeedsDownloads";
@@ -11,5 +13,5 @@ public class GtfsFeedsCatalogServiceImpl : ServiceImpl<GtfsFeedsCatalogRequest, 
         AppendQueryParam(url, "feedName", request.FeedName);
     }
 
-    public override Transports.Key getKey(GtfsFeedsCatalogRequest request) => request.Key;
+    public override Transports.Key GetKey(GtfsFeedsCatalogRequest request) => request.Key;
 }

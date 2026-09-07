@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class RawVehiclePositionsServiceImpl : ServiceImpl<VehiclePositionsRequest, VehiclePositionsResponse>
 {
     public override string GetEndpoint(VehiclePositionsRequest request) => "rawVehiclePositions";
@@ -15,5 +17,5 @@ public class RawVehiclePositionsServiceImpl : ServiceImpl<VehiclePositionsReques
         AppendQueryParam(url, "tripId", request.TripId);
     }
 
-    public override Transports.Key getKey(VehiclePositionsRequest request) => request.Key;
+    public override Transports.Key GetKey(VehiclePositionsRequest request) => request.Key;
 }

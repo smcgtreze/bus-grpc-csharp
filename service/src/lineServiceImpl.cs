@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class LineServiceImpl : ServiceImpl<LineRequest, LineResponse>
 {
     public override string GetEndpoint(LineRequest request) => "line";
@@ -14,5 +16,5 @@ public class LineServiceImpl : ServiceImpl<LineRequest, LineResponse>
         AppendQueryParam(url, "date", request.Date);
     }
 
-    public override Transports.Key getKey(LineRequest request) => request.Key;
+    public override Transports.Key GetKey(LineRequest request) => request.Key;
 }

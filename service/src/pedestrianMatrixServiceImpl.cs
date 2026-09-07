@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class PedestrianMatrixServiceImpl : ServiceImpl<PedestrianMatrixRequest, PedestrianMatrixResponse>
 {
     public override string GetEndpoint(PedestrianMatrixRequest request) => "pedestrian/matrix";
@@ -13,5 +15,5 @@ public class PedestrianMatrixServiceImpl : ServiceImpl<PedestrianMatrixRequest, 
         AppendQueryParam(url, "annotations", request.Annotations);
     }
 
-    public override Transports.Key getKey(PedestrianMatrixRequest request) => request.Key;
+    public override Transports.Key GetKey(PedestrianMatrixRequest request) => request.Key;
 }

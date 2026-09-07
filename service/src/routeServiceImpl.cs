@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class RouteServiceImpl : ServiceImpl<RoutesRequest, RoutesResponse>
 {
     public override string GetEndpoint(RoutesRequest request) => "routes";
@@ -18,5 +20,5 @@ public class RouteServiceImpl : ServiceImpl<RoutesRequest, RoutesResponse>
         AppendQueryParam(url, "barrierMode", request.BarrierMode);
     }
 
-    public override Transports.Key getKey(RoutesRequest request) => request.Key;
+    public override Transports.Key GetKey(RoutesRequest request) => request.Key;
 }

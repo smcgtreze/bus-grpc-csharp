@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class PedestrianRouteServiceImpl : ServiceImpl<PedestrianRouteRequest, PedestrianRouteResponse>
 {
     public override string GetEndpoint(PedestrianRouteRequest request) => "pedestrian/route";
@@ -18,5 +20,5 @@ public class PedestrianRouteServiceImpl : ServiceImpl<PedestrianRouteRequest, Pe
         AppendQueryParam(url, "coordinates", request.Coordinates);
     }
 
-    public override Transports.Key getKey(PedestrianRouteRequest request) => request.Key;
+    public override Transports.Key GetKey(PedestrianRouteRequest request) => request.Key;
 }

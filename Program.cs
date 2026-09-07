@@ -1,4 +1,5 @@
 ﻿using Transports;
+using BusGrpc.Services;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using Google.Protobuf;
@@ -33,7 +34,7 @@ namespace MapClickDemo
                     }
                 };
                 Console.WriteLine("Picked location " + request.Location.ToString() + " in " + request.CountryIso);
-                var response = await departuresService.GetService(request, null);
+                var response = await departuresService.GetService(request);
 
                 Console.WriteLine(formatResponse(response));
             }

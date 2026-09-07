@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class AlertsServiceImpl : ServiceImpl<AlertsRequest, AlertsResponse>
 {
     public override string GetEndpoint(AlertsRequest request) => "alerts";
@@ -14,5 +16,5 @@ public class AlertsServiceImpl : ServiceImpl<AlertsRequest, AlertsResponse>
         AppendQueryParam(url, "lang", request.Lang);
     }
 
-    public override Transports.Key getKey(AlertsRequest request) => request.Key;
+    public override Transports.Key GetKey(AlertsRequest request) => request.Key;
 }

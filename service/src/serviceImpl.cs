@@ -1,31 +1,48 @@
 using System.Text;
 using Google.Protobuf;
-using Grpc.Core;
 using Transports;
 
-public abstract class ServiceImpl<IN, OUT> where IN : IMessage, new() where OUT : IMessage, new()
+namespace BusGrpc.Services;
+
+public interface IBusService<in IN, OUT>
+    where IN : IMessage, new()
+    where OUT : IMessage, new()
 {
+    Task<OUT> GetService(IN request, CancellationToken cancellationToken = default);
+}
+
+public abstract class ServiceImpl<IN, OUT> : IBusService<IN, OUT>
+    where IN : IMessage, new()
+    where OUT : IMessage, new()
+{
+    private readonly HttpClient httpClient;
+
+    protected ServiceImpl(HttpClient? httpClient = null)
+    {
+        this.httpClient = httpClient ?? new HttpClient();
+    }
+
     public abstract string GetEndpoint(IN request);
     public abstract void AppendArgumentsToUrl(IN request, StringBuilder url);
-    public abstract Transports.Key getKey(IN request);
+    public abstract Transports.Key GetKey(IN request);
     
     public async Task<OUT> GetService(
         IN request,
-        ServerCallContext context)
+        CancellationToken cancellationToken = default)
     {
-        HttpClient httpClient = new HttpClient();
-        var url = new StringBuilder($"https://capi.{getKey(request).CapiHost}:{getKey(request).Port}/{GetEndpoint(request)}");
+        var key = GetKey(request);
+        var url = new StringBuilder($"https://capi.{key.CapiHost}:{key.Port}/{GetEndpoint(request)}");
 
         AppendArgumentsToUrl(request, url);
 
-        var httpRequest = new HttpRequestMessage(HttpMethod.Get, url.ToString());
-        httpRequest.Headers.Add("capi-key", $"Bearer {getKey(request).ApiKey}");
-        httpRequest.Headers.Add("capi-host", getKey(request).CapiHost);
+        using var httpRequest = new HttpRequestMessage(HttpMethod.Get, url.ToString());
+        httpRequest.Headers.Add("capi-key", $"Bearer {key.ApiKey}");
+        httpRequest.Headers.Add("capi-host", key.CapiHost);
 
-        var response = await httpClient.SendAsync(httpRequest);
+        using var response = await httpClient.SendAsync(httpRequest, cancellationToken);
         response.EnsureSuccessStatusCode();
 
-        var body = await response.Content.ReadAsStringAsync();
+        var body = await response.Content.ReadAsStringAsync(cancellationToken);
         return ProtoJson.Tolerant.Parse<OUT>(body);
     }
 

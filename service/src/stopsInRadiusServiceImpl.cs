@@ -1,6 +1,8 @@
 using System.Text;
 using Transports;
 
+namespace BusGrpc.Services;
+
 public class StopsInRadiusServiceImpl : ServiceImpl<StopsInRadiusRequest, StopsInRadiusResponse>
 {
     public override string GetEndpoint(StopsInRadiusRequest request) => "stopsInRadius";
@@ -13,5 +15,5 @@ public class StopsInRadiusServiceImpl : ServiceImpl<StopsInRadiusRequest, StopsI
         AppendQueryParam(url, "lang", request.Lang);
     }
 
-    public override Transports.Key getKey(StopsInRadiusRequest request) => request.Key;
+    public override Transports.Key GetKey(StopsInRadiusRequest request) => request.Key;
 }
