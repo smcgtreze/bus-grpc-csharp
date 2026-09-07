@@ -1,15 +1,16 @@
-﻿using Transports;
 using BusGrpc.Services;
-using System.Windows.Forms;
-using System.Threading.Tasks;
 using Google.Protobuf;
 using Newtonsoft.Json;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using Transports;
 
 namespace MapClickDemo
 {
     internal static class Program
     {
         private static NextDeparturesServiceImpl departuresService = new NextDeparturesServiceImpl();
+
         [STAThread]
         static void Main(string[] args)
         {

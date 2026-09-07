@@ -24,8 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="map.html">
+    <Content Include="example\map.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>map.html</TargetPath>
     </Content>
   </ItemGroup>
 
