@@ -4,14 +4,7 @@ using Transports;
 
 namespace BusGrpc.Services;
 
-public interface IBusService<in IN, OUT>
-    where IN : IMessage, new()
-    where OUT : IMessage, new()
-{
-    Task<OUT> GetService(IN request, CancellationToken cancellationToken = default);
-}
-
-public abstract class ServiceImpl<IN, OUT> : IBusService<IN, OUT>
+public abstract class ServiceImpl<IN, OUT>
     where IN : IMessage, new()
     where OUT : IMessage, new()
 {
