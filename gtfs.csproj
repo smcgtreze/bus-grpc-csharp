@@ -17,6 +17,10 @@
     <None Remove="server\**" />
     <Content Remove="server\**" />
     <EmbeddedResource Remove="server\**" />
+    <Compile Remove="client\**" />
+    <None Remove="client\**" />
+    <Content Remove="client\**" />
+    <EmbeddedResource Remove="client\**" />
   </ItemGroup>
 
   <ItemGroup>

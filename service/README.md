@@ -54,6 +54,25 @@ It listens on `localhost:5000` using plaintext HTTP/2. All ten services from the
 Evans does not need local `.proto` files. This is a local development host, not a
 TLS-enabled or authenticated public server. Stop it with Ctrl+C.
 
+## Use the CLI client
+
+Start the server, then run the console client in another terminal:
+
+```powershell
+dotnet run --project .\client\BusGrpc.Client.csproj
+```
+
+Pass a different server address as the first argument if needed. Choose an RPC
+from the list and paste its request as protobuf JSON; the response is printed
+as JSON. For example, choose `next-departures` and enter:
+
+```json
+{"location":"38.7223,-9.1393","countryIso":"PRT","key":{"apiKey":"your-api-key","capiHost":"busmaps.com","port":8443}}
+```
+
+Enter `exit` at the RPC prompt to quit. The client includes commands for all
+ten exposed RPCs; request fields are defined in the [protobuf files](../proto).
+
 In another terminal:
 
 ```powershell
