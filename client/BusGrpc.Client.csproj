@@ -10,4 +10,10 @@
     <ProjectReference Include="..\service\BusGrpc.Services.csproj" />
     <PackageReference Include="Grpc.Net.Client" Version="2.52.0" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.local.json"
+          CopyToOutputDirectory="PreserveNewest"
+          CopyToPublishDirectory="Never" />
+  </ItemGroup>
 </Project>
